@@ -169,6 +169,10 @@ void PatchMemory()
         }
     }
 
+    //Pricedownで','と'.'が出るようにする
+    auto comp = static_cast<unsigned char>(0xFF);
+    memcpy(reinterpret_cast<void*>(0x718C6E), &comp, 0x1);
+
     for (auto address : AddressesForFAddDWordC9DFF0)
     {
         if (address != 0)
