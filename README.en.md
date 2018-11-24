@@ -1,3 +1,7 @@
+[![Build status](https://img.shields.io/appveyor/ci/kagikn/jpnpatchsa.svg?style=flat-square)](https://ci.appveyor.com/project/kagikn/jpnpatchsa)
+[![GitHub total downloads](https://img.shields.io/github/downloads/kagikn/JPNPatchSA/total.svg?style=flat-square)](https://github.com/kagikn/JPNPatchSA/releases)
+[![License](https://img.shields.io/github/license/kagikn/JPNPatchSA.svg?style=flat-square)](./LICENSE.md)
+
 [Japanese README](README.md)
 # JPNPatchSA
 This asi makes it possible to display Shift JIS (CP932) characters in GTA San Andreas. This mod is ported from jontamasan's Japanese loader for GTA SA and removed unnesessary patching, and it doesn't cause the glitch where the fire rates of plane arms is unintentionally reduced by 75%.

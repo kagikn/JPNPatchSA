@@ -1,3 +1,7 @@
+[![Build status](https://img.shields.io/appveyor/ci/kagikn/jpnpatchsa.svg?style=flat-square)](https://ci.appveyor.com/project/kagikn/jpnpatchsa)
+[![GitHub total downloads](https://img.shields.io/github/downloads/kagikn/JPNPatchSA/total.svg?style=flat-square)](https://github.com/kagikn/JPNPatchSA/releases)
+[![License](https://img.shields.io/github/license/kagikn/JPNPatchSA.svg?style=flat-square)](./LICENSE.md)
+
 [English README](README.en.md)
 # JPNPatchSA
 GTA San AndreasでShift JIS(CP932)の文字を表示できるようにします。このASIはjontamasan氏の日本語化ローダーModをASIに移植したものですが、不要なアドレスの書き換えを削除しており、飛行機の武装の連射速度が25%になるバグは修正されています。
