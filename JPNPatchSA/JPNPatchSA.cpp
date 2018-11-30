@@ -110,8 +110,8 @@ void Main()
 
     //0x6D40AB(GetFiringRateMultiplier)と0x6D40C7(GetFiringRateMultiplier)と0x6D40FB+0x6D4117(GetPlaneGunsRateOfFire)と
     //0x6D45AB+0x6D45C7(GetPlaneOrdnanceRateOfFire)と0x6EFCF6+0x6EFD22+0x6EFD51(RenderWater?)は書き換える必要がないので除外済み
+    //日本語用の表示に関係ないことが確認できたアドレスは除外済み
     //callやpushなどがあったアドレスの書き換えはゲームが落ちる原因となったのでそれらのアドレスはすべて除外済み
-    //0x718B5A(PrintChar内)は書き換え必須、0x718B74(PrintChar内)も書き換えるべきだと思われるが他が本当に書き換える必要があるかは要検証
     constexpr std::array<int, 3> AddressesForFMulDWordC9DFF0 = { 0x718B5A, 0x718B74, 0x718BE9 };
     constexpr std::array<int, 3> AddressesForFCompDWordC9DFF0 = { 0x685404, 0x685462, 0x6A6FD9 };
     constexpr std::array<int, 4> AddressesForFAddDWordC9DFF0 = { 0x718BD7, 0x718CB6, 0x718D42, 0x718DE0 };
