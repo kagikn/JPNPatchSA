@@ -8,7 +8,7 @@
 GameVersion GetGameVersion()
 {
     const auto baseAddressOfExe = reinterpret_cast<char*>(GetModuleHandle(nullptr));
-    const unsigned int AddressOfEntryPoint = *reinterpret_cast<const unsigned int*>(baseAddressOfExe + 0x158);
+    const unsigned int AddressOfEntryPoint = *reinterpret_cast<const unsigned int*>(baseAddressOfExe + 0x178);
 
     if (AddressOfEntryPoint == 0x458E78)
         return GameVersion::STEAM;
@@ -57,7 +57,7 @@ void ShowErrorBox(GameVersion gameVersion)
 {
     const auto message = L"現在起動しているバージョンでは日本語化できません。\n"
         L"v1.0(Compact以外)かv1.01のgta_sa.exeで起動してください。\n"
-        L"現在起動中のexeのバージョン: " + GetGameVersionName(gameVersion);
+        L"現在起動中のexeのバージョン: " + GetGameVersionName(GetGameVersion());
 
     MessageBox(
         nullptr,
