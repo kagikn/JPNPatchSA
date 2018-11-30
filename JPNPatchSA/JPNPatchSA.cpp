@@ -128,20 +128,20 @@ void Main()
         ExitProcess(0);
     }
 
-    memcpy(reinterpret_cast<void*>(0x7199AB), instrForCFont_RenderFontBuffer1.data(), 0x5);
-    memcpy(reinterpret_cast<void*>(0x718B11), instrForCFont_PrintChar1.data(), 0x5);
-    memcpy(reinterpret_cast<void*>(0x718B33), instrForCFont_PrintChar2.data(), 0x5);
-    memcpy(reinterpret_cast<void*>(0x719A8D), instrForCFont_RenderFontBuffer3.data(), 0x5);
-    memcpy(reinterpret_cast<void*>(0x7197A2), instrFor719750.data(), 0x5);
-    memcpy(reinterpret_cast<void*>(0x71A150), instrFor71A150.data(), 0x5);
-    memcpy(reinterpret_cast<void*>(0x7199CD), instrForCFont_RenderFontBuffer2.data(), 0x4);
-    memcpy(reinterpret_cast<void*>(0x856E00), instrFor856E00.data(), 0x18E);
+    Patch(reinterpret_cast<void*>(0x7199AB), instrForCFont_RenderFontBuffer1.data(), 0x5);
+    Patch(reinterpret_cast<void*>(0x718B11), instrForCFont_PrintChar1.data(), 0x5);
+    Patch(reinterpret_cast<void*>(0x718B33), instrForCFont_PrintChar2.data(), 0x5);
+    Patch(reinterpret_cast<void*>(0x719A8D), instrForCFont_RenderFontBuffer3.data(), 0x5);
+    Patch(reinterpret_cast<void*>(0x7197A2), instrFor719750.data(), 0x5);
+    Patch(reinterpret_cast<void*>(0x71A150), instrFor71A150.data(), 0x5);
+    Patch(reinterpret_cast<void*>(0x7199CD), instrForCFont_RenderFontBuffer2.data(), 0x4);
+    Patch(reinterpret_cast<void*>(0x856E00), instrFor856E00.data(), 0x18E);
 
     for (auto address : AddressesForFMulDWordC9DFF0)
     {
         if (address != 0)
         {
-            memcpy(reinterpret_cast<void*>(address), instrForFMulDWordC9DFF0.data(), 0x6);
+            Patch(reinterpret_cast<void*>(address), instrForFMulDWordC9DFF0.data(), 0x6);
         }
     }
 
@@ -149,19 +149,19 @@ void Main()
     {
         if (address != 0)
         {
-            memcpy(reinterpret_cast<void*>(address), instrForFCompDWordC9DFF0.data(), 0x6);
+            Patch(reinterpret_cast<void*>(address), instrForFCompDWordC9DFF0.data(), 0x6);
         }
     }
 
     //Pricedownで','と'.'が出るようにする
     auto comp = static_cast<unsigned char>(0xFF);
-    memcpy(reinterpret_cast<void*>(0x718C6E), &comp, 0x1);
+    Patch(reinterpret_cast<void*>(0x718C6E), &comp, 0x1);
 
     for (auto address : AddressesForFAddDWordC9DFF0)
     {
         if (address != 0)
         {
-            memcpy(reinterpret_cast<void*>(address), instrForFAddDWordC9DFF0.data(), 0x6);
+            Patch(reinterpret_cast<void*>(address), instrForFAddDWordC9DFF0.data(), 0x6);
         }
     }
 
@@ -169,7 +169,7 @@ void Main()
     {
         if (address != 0)
         {
-            memcpy(reinterpret_cast<void*>(address), instrForFMulDWordC9DFF4.data(), 0x6);
+            Patch(reinterpret_cast<void*>(address), instrForFMulDWordC9DFF4.data(), 0x6);
         }
     }
 
@@ -177,9 +177,9 @@ void Main()
     {
         if (address != 0)
         {
-            memcpy(reinterpret_cast<void*>(address), instrForFAddDWordC9DFF4.data(), 0x6);
+            Patch(reinterpret_cast<void*>(address), instrForFAddDWordC9DFF4.data(), 0x6);
         }
     }
 
-    memcpy(reinterpret_cast<void*>(AddressForFMulQWordC9DFF8), instrForFMulQWordC9DFF8.data(), 0x6);
+    Patch(reinterpret_cast<void*>(AddressForFMulQWordC9DFF8), instrForFMulQWordC9DFF8.data(), 0x6);
 }
