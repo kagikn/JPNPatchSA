@@ -45,9 +45,9 @@ std::wstring GetGameVersionName(GameVersion version)
     case GameVersion::v11EU:
         return L"1.01 EU";
     case GameVersion::STEAM:
-        return L"新Steam R2";
+        return L"Steam R2 (2014/11)";
     case GameVersion::STEAM_LV:
-        return L"新Steam R2-LV'";
+        return L"Steam R2 (2014/12)";
     default:
         return L"不明";
     }
