@@ -4,9 +4,10 @@
 #include <string>
 #include <iomanip>
 
-//plugin-sdkから流用
+//Steam版の検出部分以外はplugin-sdkから流用
 GameVersion GetGameVersion()
 {
+    //Steam版はexeのベースアドレスが0x400000でなく不定なので実行時にexeのベースアドレスを取得する
     const auto baseAddressOfExe = reinterpret_cast<char*>(GetModuleHandle(nullptr));
     const unsigned int AddressOfEntryPoint = *reinterpret_cast<const unsigned int*>(baseAddressOfExe + 0x178);
 
