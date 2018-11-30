@@ -7,6 +7,14 @@
 //plugin-sdkから流用
 GameVersion GetGameVersion()
 {
+    const auto baseAddressOfExe = reinterpret_cast<char*>(GetModuleHandle(nullptr));
+    const unsigned int AddressOfEntryPoint = *reinterpret_cast<const unsigned int*>(baseAddressOfExe + 0x158);
+
+    if (AddressOfEntryPoint == 0x458E78)
+        return GameVersion::STEAM;
+    if (AddressOfEntryPoint == 0x458EA8)
+        return GameVersion::STEAM_LV;
+
     const int val = *reinterpret_cast<unsigned int*>(0x401000);
     if (val == 0x53EC8B55)
         return GameVersion::v10US_COMPACT;
@@ -19,10 +27,6 @@ GameVersion GetGameVersion()
         return GameVersion::v11US;
     if (*reinterpret_cast<unsigned int*>(0x82533C) == 0x94BF)
         return GameVersion::v11EU;
-    if (*reinterpret_cast<unsigned int*>(0x858D51) == 0x3539F633)
-        return GameVersion::STEAM;
-    if (*reinterpret_cast<unsigned int*>(0x858C61) == 0x3539F633)
-        return GameVersion::STEAM_LV;
 
     return GameVersion::UNKNOWN;
 }
