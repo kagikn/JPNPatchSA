@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{37CF1318-1157-42C5-BFF4-82D2BE796EE9}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>JpnPatchSA</RootNamespace>
+    <RootNamespace>JPNPatchSA</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
     <ProjectName>JPNPatchSA</ProjectName>
   </PropertyGroup>
