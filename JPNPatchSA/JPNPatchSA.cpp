@@ -57,7 +57,7 @@ void ShowErrorBox(GameVersion gameVersion)
 {
     const auto message = L"現在起動しているバージョンでは日本語化できません。\n"
         L"v1.0(Compact以外)かv1.01のgta_sa.exeで起動してください。\n"
-        L"現在起動中のexeのバージョン: " + GetGameVersionName(GetGameVersion());
+        L"現在起動中のexeのバージョン: " + GetGameVersionName(gameVersion);
 
     MessageBox(
         nullptr,
