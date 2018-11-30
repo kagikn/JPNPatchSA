@@ -62,6 +62,15 @@ void ShowErrorBox(GameVersion gameVersion)
         MB_OK | MB_ICONSTOP);
 }
 
+void Patch(void* targetAddress, void const* valueAddress, size_t valueSize)
+{
+    DWORD dwProtect[2];
+
+    VirtualProtect(targetAddress, valueSize, PAGE_EXECUTE_READWRITE, &dwProtect[0]);
+    memcpy(targetAddress, valueAddress, valueSize);
+    VirtualProtect(targetAddress, valueSize, dwProtect[0], &dwProtect[1]);
+}
+
 void Main()
 {
 #pragma region Instructions 
