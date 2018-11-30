@@ -62,7 +62,7 @@ void ShowErrorBox(GameVersion gameVersion)
         MB_OK | MB_ICONSTOP);
 }
 
-void PatchMemory()
+void Main()
 {
 #pragma region Instructions 
 #pragma warning(push)
