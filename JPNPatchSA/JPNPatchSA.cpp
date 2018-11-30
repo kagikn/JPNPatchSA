@@ -12,9 +12,9 @@ GameVersion GetGameVersion()
         return GameVersion::v10US_COMPACT;
     if (val == 0x16197BE9)
         return GameVersion::v10US_HOODLUM;
-
-    if (*reinterpret_cast<unsigned int*>(0x401000) == 0x94BF)
+    if (val == 0x94BF)
         return GameVersion::v10EU;
+
     if (*reinterpret_cast<unsigned int*>(0x8252FC) == 0x94BF)
         return GameVersion::v11US;
     if (*reinterpret_cast<unsigned int*>(0x82533C) == 0x94BF)
