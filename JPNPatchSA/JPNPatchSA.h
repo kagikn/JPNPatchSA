@@ -18,4 +18,4 @@ enum class GameVersion
 GameVersion GetGameVersion();
 std::wstring GetGameVersionName(GameVersion version);
 void PatchMemory();
-void ShowErrorBox();
+void ShowErrorBox(GameVersion gameVersion);

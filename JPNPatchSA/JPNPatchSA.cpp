@@ -49,11 +49,11 @@ std::wstring GetGameVersionName(GameVersion version)
     }
 }
 
-void ShowErrorBox()
+void ShowErrorBox(GameVersion gameVersion)
 {
     const auto message = L"現在起動しているバージョンでは日本語化できません。\n"
         L"v1.0(Compact以外)かv1.01のgta_sa.exeで起動してください。\n"
-        L"現在起動中のexeのバージョン: " + GetGameVersionName(GetGameVersion());
+        L"現在起動中のexeのバージョン: " + GetGameVersionName(gameVersion);
 
     MessageBox(
         nullptr,
@@ -115,7 +115,7 @@ void PatchMemory()
     //正常に日本語化できない（と思われる）バージョンでは日本語化できない旨を知らせてexeの起動を止める
     if (version == GameVersion::v10US_COMPACT || version == GameVersion::STEAM || version == GameVersion::STEAM_LV || version == GameVersion::UNKNOWN)
     {
-        ShowErrorBox();
+        ShowErrorBox(version);
         ExitProcess(0);
     }
 
