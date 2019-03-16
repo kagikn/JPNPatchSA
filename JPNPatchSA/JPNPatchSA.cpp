@@ -16,12 +16,11 @@ GameVersion GetGameVersion()
     if (AddressOfEntryPoint == 0x458EA8)
         return GameVersion::STEAM_LV;
 
-    const int val = *reinterpret_cast<unsigned int*>(0x401000);
-    if (val == 0x53EC8B55)
+    if (*reinterpret_cast<unsigned int*>(0x401000) == 0x53EC8B55)
         return GameVersion::v10US_COMPACT;
-    if (val == 0x16197BE9)
+    if (*reinterpret_cast<unsigned int*>(0x401000) == 0x16197BE9)
         return GameVersion::v10US_HOODLUM;
-    if (val == 0x94BF)
+    if (*reinterpret_cast<unsigned int*>(0x8245BC) == 0x94BF)
         return GameVersion::v10EU;
 
     if (*reinterpret_cast<unsigned int*>(0x8252FC) == 0x94BF)
