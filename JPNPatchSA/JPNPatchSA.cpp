@@ -104,7 +104,6 @@ void Main()
         0xC6, 0x05, 0xE0, 0xDF, 0xC9, 0x00, 0x01, 0x46, 0x3C, 0x20, 0x8A, 0x8C, 0x24, 0xA8, 0x01, 0x00, 0x00, 0xE9, 0xCD, 0x31, 0xEC, 0xFF };
 
     constexpr std::array<char, 6> instrForFMulDWordC9DFF0 = { 0xD8, 0x0D, 0xF0, 0xDF, 0xC9, 0x00 };
-    constexpr std::array<char, 6> instrForFCompDWordC9DFF0 = { 0xD8, 0x1D, 0xF0, 0xDF, 0xC9, 0x00 };
     constexpr std::array<char, 6> instrForFAddDWordC9DFF0 = { 0xD8, 0x05, 0xF0, 0xDF, 0xC9, 0x00 };
     constexpr std::array<char, 6> instrForFMulDWordC9DFF4 = { 0xD8, 0x0D, 0xF4, 0xDF, 0xC9, 0x00 };
     constexpr std::array<char, 6> instrForFAddDWordC9DFF4 = { 0xD8, 0x05, 0xF4, 0xDF, 0xC9, 0x00 };
@@ -116,7 +115,6 @@ void Main()
     //日本語用の表示に関係ないことが確認できたアドレスは除外済み
     //callやpushなどがあったアドレスの書き換えはゲームが落ちる原因となったのでそれらのアドレスはすべて除外済み
     constexpr std::array<int, 3> AddressesForFMulDWordC9DFF0 = { 0x718B5A, 0x718B74, 0x718BE9 };
-    constexpr std::array<int, 2> AddressesForFCompDWordC9DFF0 = { 0x685404, 0x685462 };
     constexpr std::array<int, 4> AddressesForFAddDWordC9DFF0 = { 0x718BD7, 0x718CB6, 0x718D42, 0x718DE0 };
     constexpr std::array<int, 4> AddressesForFMulDWordC9DFF4 = { 0x5765C0, 0x576689, 0x57672F, 0x5767F8 };
     constexpr std::array<int, 3> AddressesForFAddDWordC9DFF4 = { 0x718CAC, 0x718D2A, 0x718DD6 };
@@ -145,14 +143,6 @@ void Main()
         if (address != 0)
         {
             Patch(reinterpret_cast<void*>(address), instrForFMulDWordC9DFF0.data(), 0x6);
-        }
-    }
-
-    for (auto address : AddressesForFCompDWordC9DFF0)
-    {
-        if (address != 0)
-        {
-            Patch(reinterpret_cast<void*>(address), instrForFCompDWordC9DFF0.data(), 0x6);
         }
     }
 
