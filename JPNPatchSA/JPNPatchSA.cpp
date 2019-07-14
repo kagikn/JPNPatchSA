@@ -116,7 +116,7 @@ void Main()
     //日本語用の表示に関係ないことが確認できたアドレスは除外済み
     //callやpushなどがあったアドレスの書き換えはゲームが落ちる原因となったのでそれらのアドレスはすべて除外済み
     constexpr std::array<int, 3> AddressesForFMulDWordC9DFF0 = { 0x718B5A, 0x718B74, 0x718BE9 };
-    constexpr std::array<int, 3> AddressesForFCompDWordC9DFF0 = { 0x685404, 0x685462, 0x6A6FD9 };
+    constexpr std::array<int, 2> AddressesForFCompDWordC9DFF0 = { 0x685404, 0x685462 };
     constexpr std::array<int, 4> AddressesForFAddDWordC9DFF0 = { 0x718BD7, 0x718CB6, 0x718D42, 0x718DE0 };
     constexpr std::array<int, 4> AddressesForFMulDWordC9DFF4 = { 0x5765C0, 0x576689, 0x57672F, 0x5767F8 };
     constexpr std::array<int, 3> AddressesForFAddDWordC9DFF4 = { 0x718CAC, 0x718D2A, 0x718DD6 };
