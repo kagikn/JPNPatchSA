@@ -19,4 +19,3 @@ GameVersion GetGameVersion();
 std::wstring GetGameVersionName(GameVersion version);
 void Main();
 void ShowErrorBox(GameVersion gameVersion);
-void Patch(void* targetAddress, void const* valueAddress, size_t valueSize);

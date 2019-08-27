@@ -165,6 +165,8 @@
     <ClCompile Include="JPNPatchSA.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ASM_instructions.h" />
+    <ClInclude Include="injector.h" />
     <ClInclude Include="JPNPatchSA.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
