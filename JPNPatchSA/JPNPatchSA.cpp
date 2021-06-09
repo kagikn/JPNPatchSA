@@ -68,9 +68,9 @@ void ShowErrorBox(GameVersion gameVersion)
         MB_OK | MB_ICONSTOP);
 }
 
-void Main()
+void Patch10Exe()
 {
-#pragma region Addresses
+#pragma region Addresses For 1.0 exe
     //0x6D40AB(GetFiringRateMultiplier)と0x6D40C7(GetFiringRateMultiplier)と0x6D40FB+0x6D4117(GetPlaneGunsRateOfFire)と
     //0x6D45AB+0x6D45C7(GetPlaneOrdnanceRateOfFire)と0x6EFCF6+0x6EFD22+0x6EFD51(RenderWater?)は書き換える必要がないので除外済み
     //日本語用の表示に関係ないことが確認できたアドレスは除外済み
@@ -81,27 +81,12 @@ void Main()
     constexpr int AddressForFMulQWordC9DFF8 = 0x718C37;
 #pragma endregion
 
-    const auto version = GetGameVersion();
-    //正常に日本語化できない（と思われる）バージョンでは日本語化できない旨を知らせてexeの起動を止める
-    if (version == GameVersion::v10US_COMPACT || version == GameVersion::STEAM || version == GameVersion::STEAM_LV || version == GameVersion::UNKNOWN)
-    {
-        ShowErrorBox(version);
-        ExitProcess(0);
-    }
-
-    injector::MakeJMP(0x7199AB, ASM_HookedDrawCharacter); // instrForCFont_RenderFontBuffer1
-    injector::MakeJMP(0x718B11, ASM_HookedDrawCharacter2);
-    injector::MakeJMP(0x718B33, ASM_HookedDrawCharacter3);
-    injector::MakeJMP(0x719A8D, ASM_HookedDrawCharacter4);
-    injector::MakeJMP(0x7197A2, ASM_HookedDrawCharacter5);
-    injector::MakeJMP(0x71A150, ASM_GetStringWidthHooked); // in CFont::GetStringWidth at 0x71A0E0
-
-    // "mov byte ptr [esp+0x10], cl (88 4c 24 10)" を "mov DWORD PTR [esp+0x10], ecx" (89 4c 24 10) に変更して2バイトの文字を読み取れるようにする
-    injector::WriteMemory(0x7199CD, static_cast<unsigned char>(0x89));
-
-    //Pricedownで','と'.'が出るようにする
-    constexpr unsigned char comp = 0xFF;
-    injector::WriteMemory(0x718C6E, comp);
+    injector::MakeJMP(0x7199AB, ASM_HookedDrawCharacter_10); // instrForCFont_RenderFontBuffer1
+    injector::MakeJMP(0x718B11, ASM_HookedDrawCharacter2_10);
+    injector::MakeJMP(0x718B33, ASM_HookedDrawCharacter3_10);
+    injector::MakeJMP(0x719A8D, ASM_HookedDrawCharacter4_10);
+    injector::MakeJMP(0x7197A2, ASM_HookedDrawCharacter5_10);
+    injector::MakeJMP(0x71A150, ASM_GetStringWidthHooked_10); // in CFont::GetStringWidth at 0x71A0E0
 
     for (auto address : AddressesForFMulDWordC9DFF0)
     {
@@ -129,4 +114,82 @@ void Main()
     }
 
     injector::WriteMemory(AddressForFMulQWordC9DFF8 + 2, 0xC9DFF8);
+}
+
+void Patch101Exe()
+{
+#pragma region Addresses For 1.01 exe
+    //0x6D40AB(GetFiringRateMultiplier)と0x6D40C7(GetFiringRateMultiplier)と0x6D40FB+0x6D4117(GetPlaneGunsRateOfFire)と
+    //0x6D45AB+0x6D45C7(GetPlaneOrdnanceRateOfFire)と0x6EFCF6+0x6EFD22+0x6EFD51(RenderWater?)は書き換える必要がないので除外済み
+    //日本語用の表示に関係ないことが確認できたアドレスは除外済み
+    //callやpushなどがあったアドレスの書き換えはゲームが落ちる原因となったのでそれらのアドレスはすべて除外済み
+    constexpr std::array<int, 3> AddressesForFMulDWordC9FCB0 = { 0x71938A, 0x7193A4, 0x719419 };
+    constexpr std::array<int, 4> AddressesForFAddDWordC9FCB0 = { 0x719407, 0x7194E6, 0x719572, 0x719610 };
+    constexpr std::array<int, 3> AddressesForFAddDWordC9FCB4 = { 0x7194DC, 0x71955A, 0x719606 };
+    constexpr int AddressForFMulQWordC9FCB8 = 0x719467;
+#pragma endregion
+
+    injector::MakeJMP(0x71A1DB, ASM_HookedDrawCharacter_101); // instrForCFont_RenderFontBuffer1
+    injector::MakeJMP(0x719341, ASM_HookedDrawCharacter2_101);
+    injector::MakeJMP(0x719363, ASM_HookedDrawCharacter3_101);
+    injector::MakeJMP(0x71A2BD, ASM_HookedDrawCharacter4_101);
+    injector::MakeJMP(0x719FD2, ASM_HookedDrawCharacter5_101);
+    injector::MakeJMP(0x71A980, ASM_GetStringWidthHooked_101); // in CFont::GetStringWidth at 0x71A0E0
+
+    for (auto address : AddressesForFMulDWordC9FCB0)
+    {
+        if (address != 0)
+        {
+            injector::WriteMemory(address + 2, 0xc9fcb0);
+        }
+    }
+
+
+    for (auto address : AddressesForFAddDWordC9FCB0)
+    {
+        if (address != 0)
+        {
+            injector::WriteMemory(address + 2, 0xc9fcb0);
+        }
+    }
+
+    for (auto address : AddressesForFAddDWordC9FCB4)
+    {
+        if (address != 0)
+        {
+            injector::WriteMemory(address + 2, 0xc9fcb4);
+        }
+    }
+
+    injector::WriteMemory(AddressForFMulQWordC9FCB8 + 2, 0xc9fcb8);
+}
+
+void Main()
+{
+
+    const auto version = GetGameVersion();
+    //正常に日本語化できない（と思われる）バージョンでは日本語化できない旨を知らせてexeの起動を止める
+    if (version == GameVersion::v10US_COMPACT || version == GameVersion::STEAM || version == GameVersion::STEAM_LV || version == GameVersion::UNKNOWN)
+    {
+        ShowErrorBox(version);
+        ExitProcess(0);
+    }
+
+    bool isExeVersion10 = (version == GameVersion::v10US_HOODLUM || version == GameVersion::v10EU);
+
+    // "mov byte ptr [esp+0x10], cl (88 4c 24 10)" を "mov DWORD PTR [esp+0x10], ecx" (89 4c 24 10) に変更して2バイトの文字を読み取れるようにする
+    injector::WriteMemory(isExeVersion10 ? 0x7199CD : 0x71A1FD, static_cast<unsigned char>(0x89));
+
+    //Pricedownで','と'.'が出るようにする
+    constexpr unsigned char comp = 0xFF;
+    injector::WriteMemory(isExeVersion10 ? 0x718C6E : 0x71949E, comp);
+
+    if (isExeVersion10)
+    {
+        Patch10Exe();
+    }
+    else
+    {
+        Patch101Exe();
+    }
 }
