@@ -18,7 +18,7 @@ GameVersion GetGameVersion()
     if (AddressOfEntryPoint == 0x458EA8)
         return GameVersion::STEAM_LV;
 
-    if (*reinterpret_cast<unsigned int*>(0x401000) == 0x53EC8B55)
+    if (*reinterpret_cast<unsigned int*>(0x40104C) == 0x50EC83EC)
         return GameVersion::v10US_COMPACT;
     if (*reinterpret_cast<unsigned int*>(0x401000) == 0x16197BE9)
         return GameVersion::v10US_HOODLUM;
