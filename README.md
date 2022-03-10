@@ -4,7 +4,7 @@
 
 [English README](README.en.md)
 # JPNPatchSA
-GTA San AndreasでShift JIS(CP932)の文字を表示できるようにします。このASIはjontamasan氏の日本語化ローダーModをASIに移植したものですが、不要なアドレスの書き換えを削除しており、飛行機の武装の連射速度が25%になるバグは修正されています。
+GTA San AndreasでShift JIS(CP932)の文字を表示できるようにします。このASIはjontamasan氏の日本語化ローダーModをASIに移植したものです。さらに、不要なアドレスの書き換えを削除しており、飛行機の武装の連射速度が25%になるといったいくつかのバグは修正されています。
 
 ## 使い方
 1. ASIローダーをインストールする
@@ -24,4 +24,4 @@ GTA San AndreasでShift JIS(CP932)の文字を表示できるようにします�
 MIT Lisence
 
 ## スペシャルサンクス
-[jontamasan (GTASA用の日本語化ローダーの作者)](https://jontamasan.wordpress.com/)
+[jontamasan (GTASA用の日本語化ローダーの作者)](https://jontamasan.wordpress.com/)…オリジナル版の漢字化exeの作者です。[明示的な許可](https://twitter.com/jontamasan/status/1066147982205059072)もいただいています。
